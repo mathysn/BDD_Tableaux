@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Modifier un type d'époque</title>
+{% endblock %}
+
+{% block body %}
+  <div class="titre" style="display: flex;">
+        <h2 class="m-auto mt-4">Modifier un type d'époque</h2>
+    </div>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/type_epoque/edit">
+   <div class="tableau mt-4" style="display: flex;">
+    <fieldset class="m-auto">
+        <input type="hidden" name="id" size="18" value="{{ type_epoque.id }}" id="id">
+        <label for="ancien-libelle"><strong>Ancien libellé: </strong>{{ type_epoque.libelle }}</label><br>
+        <label for="libelle">Nouveau libellé</label><br>
+        <input type="text" name="libelle" size="18" value="" placeholder="Saisir le libellé" id="libelle"><br>
+        <input type="submit" class="btn btn-outline-warning mt-3" value="Modifier" name="Modifier" style="margin-left: 40px;">
+    </fieldset>
+   </div>
+  </form>
+{% endblock %}

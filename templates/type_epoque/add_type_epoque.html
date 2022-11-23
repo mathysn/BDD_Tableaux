@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Ajouter un type d'époque</title>
+{% endblock %}
+
+{% block body %}
+  <div class="titre" style="display: flex;">
+        <h2 class="m-auto mt-4">Ajouter un type d'époque</h2>
+    </div>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/type_epoque/add" >
+  <div class="tableau mt-4" style="display: flex;">
+    <fieldset class="m-auto">
+        <label for="libelle">Libellé</label><br>
+        <input id="libelle" type="text" name="libelle" size="18" value="" placeholder="Saisir le libellé"><br>
+        <input type="submit" class="btn btn-outline-success mt-3" value="Creer" name="Valider" style="margin-left: 55px;">
+    </fieldset>
+  </div>
+  </form>
+{% endblock %}

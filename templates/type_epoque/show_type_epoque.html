@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Afficher les types d'époque</title>
+{% endblock %}
+
+{% block body %}
+
+    <div style="display: flex; flex-direction: column;">
+        <h3 class="m-auto mt-4">Types d'époque</h3>
+        <button type="button" class="btn btn-outline-success m-auto mt-4" onclick="location.href='/type_epoque/add'" style="width: fit-content">Ajouter une époque</button>
+    </div>
+
+    <table class="table mt-3">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Désignation</th>
+                <th scope="col">Opérations</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if typeEpoque | length >= 1 %}
+            {% for ligne in typeEpoque %}
+               <tr>
+                      <td>{{ ligne.id }}</td>
+                      <td>{{ ligne.libelle }}</td>
+                      <td>
+                          <div class="btn-group">
+                               <button type="button" class="btn btn-outline-warning" onclick="location.href='/type_epoque/edit?id={{ ligne.id }}&amp;param2={{ligne.libelle}}'">Editer</button>
+                               <button type="button" class="btn btn-outline-danger" onclick="location.href='/type_epoque/delete?id={{ ligne.libelle }}'">Supprimer</button>
+                          </div>
+                      </td>
+               </tr>
+            {% endfor %}
+        {% else %}
+                <tr>
+                      <td>
+                          Pas de type d'époque
+                      </td>
+               </tr>
+        {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

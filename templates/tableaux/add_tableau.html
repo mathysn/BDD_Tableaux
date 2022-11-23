@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Ajouter un tableau</title>
+{% endblock %}
+
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}" >
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="titre" style="display: flex;">
+        <h2 class="m-auto mt-4">Ajouter un tableau</h2>
+    </div>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/tableaux/add" >
+      <div class="tableau mt-4" style="display: flex;">
+          <fieldset class="m-auto">
+            <label for="nom">Nom</label><br>
+            <input id="nom" type="text" name="nom" size="18" value="" placeholder="Saisir le nom"><br>
+
+            <label for="prixAssurance">Prix de l'assurance</label><br>
+            <input id="prixAssurance" type="text" name="prixAssurance" size="18" value="" placeholder="Prix de l'assurance"><br>
+
+            <label for="dateRealisation">Date de réalisation</label><br>
+            <input type="date" name="dateRealisation" size="18" value="" id="dateRealisation"><br>
+
+            <label for="peintre">Peintre</label><br>
+            <input id="peintre" type="text" name="peintre" size="18" value="" placeholder="Saisir le peintre"><br>
+
+            <label for="localisationMusee">Musée</label><br>
+            <input id="localisationMusee" type="text" name="localisationMusee" size="18" value="" placeholder="Saisir le musée"><br>
+
+            <label for="photo">Photo</label>
+            <input id="photo" type="file" name="photo" size="18"><br>
+
+            <label for="mouvement">Mouvement</label><br>
+            <input id="mouvement" type="text" name="mouvement" size="18" value="" placeholder="Saisir le mouvement"><br>
+
+            <label for="typeEpoque_id">Epoque</label><br>
+            <select name="typeEpoque_id" required>
+                <option value="0" selected>Choisir une époque</option>
+                {% for type in typeEpoque %}
+                    <option value="{{ type.id }}"> {{ type.libelle }} </option>
+                {% endfor %}
+            </select><br>
+            <input type="submit" class="btn btn-outline-success mt-3" value="Créer" name="Valider" style="margin-left: 40px">
+        </fieldset>
+      </div>
+  </form>
+{% endblock %}
