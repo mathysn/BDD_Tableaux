@@ -29,25 +29,16 @@ def teardown_db(exception):
 def show_accueil():
     return render_template('layout.html')
 
-
+### TABLEAU ###
 @app.route('/tableaux/show')
 def show_tableau():
     bdd = get_db().cursor()
-    sql = "SELECT id_tableau AS id, \
-          nom_tableau AS nom, \
-          prix_assurance AS prixAssurance, \
-          date_realisation AS dateRealisation, \
-          peintre, \
-          localisation_musee AS localisationMusee, \
-          photo, \
-          mouvement, \
-          type_epoque_id AS typeEpoque_id \
-          FROM tableau \
-          ORDER BY id_tableau"
-
+    sql = """SELECT *
+             FROM tableau
+             ORDER BY id_tableau"""
     bdd.execute(sql)
     tableau = bdd.fetchall()
-    return render_template('tableaux/show_tableaux.html', tableaux=tableau)
+    return render_template('tableaux/show_tableaux.html', tableau=tableau)
 
 
 @app.route('/tableaux/card')

@@ -4,62 +4,58 @@
     <title>Afficher les tableaux</title>
 {% endblock %}
 
-{% block stylesheets %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}" >
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-{% endblock %}
-
 {% block body %}
-
-    <div style="display: flex; flex-direction: column;">
-        <h3 class="m-auto mt-4">Tableaux</h3>
-        <button type="button" class="btn btn-outline-success m-auto mt-4" onclick="location.href='/tableaux/add'" style="width: fit-content">Ajouter un tableau</button>
-    </div>
-
-    <table class="table mt-3">
-        <thead>
+<br><br>
+<div class="head">
+    <h3>Tableaux</h3>
+    <a type="button" class="btn btn-outline-success" href="/tableaux/add">Ajouter</a>
+</div>
+<br><br>
+<div>
+    <table class="table table-striped">
+        <thead class="table-dark">
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Prix assurance</th>
-                <th scope="col">Date réalisation</th>
-                <th scope="col">Peintre</th>
-                <th scope="col">Musée</th>
-                <th scope="col">Photo</th>
-                <th scope="col">Mouvement</th>
-                <th scope="col">Type époque</th>
-                <th scope="col">Opérations</th>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prix Assurance</th>
+                <th>Date Réalisation</th>
+                <th>Peintre</th>
+                <th>Musée</th>
+                <th>Mouvement</th>
+                <th>Epoque</th>
+                <th>Opérations</th>
             </tr>
         </thead>
         <tbody>
-        {% if tableaux | length >= 1 %}
-            {% for ligne in tableaux %}
-               <tr>
-                   <td>{{ ligne.id }}</td>
-                   <td>{{ ligne.nom }}</td>
-                   <td>{{ ligne.prixAssurance }} €</td>
-                   <td>{{ ligne.dateRealisation }}</td>
-                   <td>{{ ligne.peintre }}</td>
-                   <td>{{ ligne.localisationMusee }}</td>
-                   <td><img src="{{ ligne.photo }}" alt="photo de {{ ligne.nom }}"></td>
-                   <td>{{ ligne.mouvement }}</td>
-                   <td>{{ ligne.typeEpoque_id }}</td>
-                   <td>
-                       <div class="btn-group">
-                           <button type="button" class="btn btn-outline-warning" onclick="location.href='/tableaux/edit?id={{ ligne.id }}&amp;param2={{ligne.libelle}}'">Editer</button>
-                           <button type="button" class="btn btn-outline-danger" onclick="location.href='/tableaux/delete?id={{ ligne.nom }}'">Supprimer</button>
-                       </div>
-                   </td>
-               </tr>
+        {% if tableau | length >= 1 %}
+            {% for ligne in tableau %}
+            <img src="{{ url_for ('static', filename='images/' + ligne.photo)}}" alt="" style="height: 50px; width: 50px;">
+                <tr>
+                    <td>{{ ligne.id_tableau }}</td>
+                    <td>{{ ligne.nom_tableau }}</td>
+                    <td>{{ ligne.prix_assurance }} €</td>
+                    <td>{{ ligne.date_realisation }}</td>
+                    <td>{{ ligne.peintre }}</td>
+                    <td>{{ ligne.localisation_musee }}</td>
+                    <td>{{ ligne.mouvement }}</td>
+                    <td>{{ ligne.type_epoque_id }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn btn-info btn-sm photo-button"><a href="/tableaux/photo?id={{ ligne.id_tableau}} "><span class="photo-button">Photo</span></a></button>
+                            <button class="btn btn-warning btn-sm edit-button"><a href="/tableaux/edit?id={{ ligne.id_tableau }}"><span class="edit-button">Editer</span></a></button>
+                            <button class="btn btn-danger btn-sm delete-button"><a href="/tableaux/delete?id={{ ligne.id_tableau }}"><span class="delete-button">Supprimer</span></a></button>
+                        </div>
+                    </td>
+                </tr>
             {% endfor %}
         {% else %}
                 <tr>
-                      <td>
-                          Pas de tableaux
-                      </td>
-               </tr>
+                    <td>
+                        Pas de tableau
+                    </td>
+                </tr>
         {% endif %}
         </tbody>
     </table>
+</div>
 {% endblock %}
