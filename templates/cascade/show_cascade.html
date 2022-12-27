@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Supprimer un type d'époque</title>
+{% endblock %}
+
+{% block body %}
+<br><br>
+<div class="head">
+    <h3>Supprimer un type d'époque</h3>
+</div>
+<br><br>
+<div>
+    <form method="post" action="/cascade/deleteitem">
+    <div class="container">
+        <div class="texte-info text-align-center">
+            <h5>Impossible de supprimer "{{ libelle.libelle }}" car il contient des éléments.</h5>
+        </div>
+    </div>
+
+    <div class="border rounded w-50 margin-top-40">
+        {% if probleme | length >= 1 %}
+            {% for ligne in probleme %}
+                <div class="item-block text-align-center margin-top-20 margin-bottom-20 flex-row">
+                    <h6>{{ ligne.nom_tableau }}</h6>
+                    <button class="btn btn-danger btn-sm delete-button"><a href="/cascade/deleteitem?id={{ ligne.id_tableau }}"><span class="delete-button">Supprimer</span></a></button>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="item-block text-align-center margin-top-20 margin-bottom-20 flex-row">
+                <h6>Aucun élément</h6>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -5,41 +5,43 @@
 {% endblock %}
 
 {% block body %}
-
-    <div style="display: flex; flex-direction: column;">
-        <h3 class="m-auto mt-4">Types d'époque</h3>
-        <button type="button" class="btn btn-outline-success m-auto mt-4" onclick="location.href='/type_epoque/add'" style="width: fit-content">Ajouter une époque</button>
-    </div>
-
-    <table class="table mt-3">
-        <thead class="thead-dark">
+<br><br>
+<div class="head">
+    <h3>Types d'époque</h3>
+    <a type="button" class="btn btn-outline-success" href="/type_epoque/add">Ajouter</a>
+</div>
+<br><br>
+<div>
+    <table class="table table-striped">
+        <thead class="table-dark">
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Désignation</th>
-                <th scope="col">Opérations</th>
+                <th>ID</th>
+                <th>Libellé</th>
+                <th>Opérations</th>
             </tr>
         </thead>
         <tbody>
-        {% if typeEpoque | length >= 1 %}
-            {% for ligne in typeEpoque %}
-               <tr>
-                      <td>{{ ligne.id }}</td>
-                      <td>{{ ligne.libelle }}</td>
-                      <td>
-                          <div class="btn-group">
-                               <button type="button" class="btn btn-outline-warning" onclick="location.href='/type_epoque/edit?id={{ ligne.id }}&amp;param2={{ligne.libelle}}'">Editer</button>
-                               <button type="button" class="btn btn-outline-danger" onclick="location.href='/type_epoque/delete?id={{ ligne.libelle }}'">Supprimer</button>
-                          </div>
-                      </td>
-               </tr>
+        {% if type_epoque | length >= 1 %}
+            {% for ligne in type_epoque %}
+                <tr>
+                    <td>{{ ligne.id_type_epoque }}</td>
+                    <td>{{ ligne.libelle }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button class="btn btn-warning btn-sm edit-button"><a href="/type_epoque/edit?id={{ ligne.id_type_epoque }}"><span class="edit-button">Editer</span></a></button>
+                            <button class="btn btn-danger btn-sm delete-button"><a href="/type_epoque/delete?idepoque={{ ligne.id_type_epoque }}"><span class="delete-button">Supprimer</span></a></button>
+                        </div>
+                    </td>
+                </tr>
             {% endfor %}
         {% else %}
                 <tr>
-                      <td>
-                          Pas de type d'époque
-                      </td>
-               </tr>
+                    <td>
+                        Pas de type d'époque
+                    </td>
+                </tr>
         {% endif %}
         </tbody>
     </table>
+</div>
 {% endblock %}

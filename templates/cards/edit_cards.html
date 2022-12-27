@@ -1,0 +1,87 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Modifier un tableau</title>
+{% endblock %}
+
+{% block body %}
+  <h2 class="text-align-center">Modifier un tableau</h2>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method="post" action="/cards/edit">
+    <fieldset>
+        <div class="container formulaire w-75 margin-top-40">
+            <div class="border rounded w-50">
+                <legend>Tableau</legend>
+                <input type="hidden" name="id" value="{{ tableau.id_tableau }}">
+                <div class="form-group row margin-bot">
+                    <label for="nom" class="col-sm-3 col-form-label margin-left">Nom</label>
+                    <div class="col-sm-6">
+                        <input id="nom" class="form-control" type="text" name="nom" size="18" value="{{tableau.nom_tableau}}">
+                    </div>
+                </div>
+
+                <div class="form-group row margin-bot">
+                    <label for="prix-assurance" class="col-sm-3 col-form-label margin-left">Prix assurance</label>
+                    <div class="col-sm-6">
+                        <input id="prix-assurance" class="form-control" type="text" name="prix-assurance" size="18" value="{{tableau.prix_assurance}}">
+                    </div>
+                </div>
+
+                <div class="form-group row margin-bot">
+                    <label for="date-realisation" class="col-sm-3 col-form-label margin-left">Date réalisation</label>
+                    <div class="col-sm-6">
+                        <input id="date-realisation" class="form-control" type="date" name="date-realisation" size="18" value="{{tableau.date_realisation}}">
+                    </div>
+                </div>
+
+                <div class="form-group row margin-bot">
+                    <label for="peintre" class="col-sm-3 col-form-label margin-left">Peintre</label>
+                    <div class="col-sm-6">
+                        <input id="peintre" class="form-control" type="text" name="peintre" size="18" value="{{tableau.peintre}}">
+                    </div>
+                </div>
+
+                <div class="form-group row margin-bot">
+                    <label for="musee" class="col-sm-3 col-form-label margin-left">Musée</label>
+                    <div class="col-sm-6">
+                        <input id="musee" class="form-control" type="text" name="musee" size="18" value="{{tableau.localisation_musee}}">
+                    </div>
+                </div>
+
+                <div class="form-group row margin-bot">
+                    <label for="mouvement" class="col-sm-3 col-form-label margin-left">Mouvement</label>
+                    <div class="col-sm-6">
+                        <input id="mouvement" class="form-control" type="text" name="mouvement" size="18" value="{{tableau.mouvement}}">
+                    </div>
+                </div>
+
+                <div class="form-group row margin-bot">
+                    <label for="epoque" class="col-sm-3 col-form-label margin-left">Époque</label>
+                    <div class="col-sm-6">
+                        <select id="epoque" class="form-control" name="epoque">
+                            <option value="{{ tableau.type_epoque_id }}">{{ tableau.libelle }}</option>
+                            {% for e in type_epoque %}
+                                <option value="{{ e.id_type_epoque }}">{{ e.libelle }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row margin-bot">
+                    <label for="photo" class="col-sm-3 col-form-label margin-left">Photo</label>
+                    <div class="col-sm-6">
+                        <input id="photo" class="form-control" type="file" name="photo" size="18" value="{{tableau.photo}}">
+                    </div>
+                </div>
+
+                <br>
+                <div class="col text-center margin-bot">
+                    <input class="btn btn-primary" type="submit" value="Editer" name="Editer">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+  </form>
+{% endblock %}

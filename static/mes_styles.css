@@ -22,7 +22,8 @@ table ,tr {
 }
 
 a:link {
- text-decoration:none;
+    text-decoration: none;
+    color: white;
 }
 
 .flashes {
@@ -78,6 +79,14 @@ legend {
     margin-top: 40px;
 }
 
+.margin-top-20 {
+    margin-top: 20px;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
 .text-align-center {
     text-align: center;
 }
@@ -86,6 +95,14 @@ legend {
     margin: auto;
 }
 
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    padding: 0 1em;
+}
+
 nav {
     border-bottom: solid 1px black;
+    background: rgb(21,238,12);
+    background: linear-gradient(90deg, rgba(21,238,12,1) 0%, rgba(133,80,0,1) 9%, rgba(14,42,163,1) 14%, rgba(53,98,57,1) 22%, rgba(202,66,17,1) 32%, rgba(15,186,181,1) 36%, rgba(156,12,165,1) 39%, rgba(206,255,0,1) 53%, rgba(97,224,208,1) 61%, rgba(238,0,169,1) 66%, rgba(153,175,0,1) 71%, rgba(111,0,79,1) 75%, rgba(0,0,0,1) 82%, rgba(0,22,255,1) 89%, rgba(61,0,0,1) 94%, rgba(16,92,0,1) 100%);
 }

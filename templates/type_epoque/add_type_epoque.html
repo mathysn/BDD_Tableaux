@@ -5,19 +5,30 @@
 {% endblock %}
 
 {% block body %}
-  <div class="titre" style="display: flex;">
-        <h2 class="m-auto mt-4">Ajouter un type d'époque</h2>
+
+    <div class="head">
+        <h2>Ajout d'un type d'époque</h2>
+        {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}
+        {% endif %}
+        <form method="post" action="/type_epoque/add">
     </div>
-  {% if error %}
-    <p class=error><strong>Error:</strong> {{ error }}
-  {% endif %}
-  <form method="post" action="/type_epoque/add" >
-  <div class="tableau mt-4" style="display: flex;">
-    <fieldset class="m-auto">
-        <label for="libelle">Libellé</label><br>
-        <input id="libelle" type="text" name="libelle" size="18" value="" placeholder="Saisir le libellé"><br>
-        <input type="submit" class="btn btn-outline-success mt-3" value="Creer" name="Valider" style="margin-left: 55px;">
+
+    <fieldset>
+        <div class="container w-75 margin-top-40">
+            <div class="border rounded w-50">
+                <legend>Type d'époque</legend>
+                <div class="form-group row margin-bot">
+                    <label for="libelle" class="col-sm-3 col-form-label margin-left">Libellé</label>
+                    <div class="col-sm-6">
+                        <input required="required" id="libelle" class="form-control" type="text" name="libelle" size="18" value="" placeholder="Saisir le libellé de l'époque">
+                    </div>
+                </div>
+                <br>
+                <div class="col text-center margin-bot">
+                    <input class="btn btn-primary" type="submit" value="Creer" name="Valider">
+                </div>
+            </div>
+        </div>
     </fieldset>
-  </div>
-  </form>
 {% endblock %}
